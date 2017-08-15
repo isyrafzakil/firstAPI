@@ -33,6 +33,17 @@ app.get('/isyraf', function(req, res) {
     res.send('Isyraf is the author of this API');
 });
 
+app.post('/', function(req, res) {
+    var ingredient = req.body;
+    if (!ingredient || ingredient.text === "") {
+        res.status(500).send({error: "Your ingredient must have text"});
+    }
+    else {
+        ingredients.push(ingredient);
+        res.status(200).send(ingredient);
+    }
+});
+
 app.listen(4200, function() {
     console.log("First API running on port 4200");
 });
